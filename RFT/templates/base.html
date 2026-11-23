@@ -1,0 +1,7 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>RTF Accounts</title><link rel="stylesheet" href="{{ url_for('static',filename='style.css') }}"></head>
+<body>{% if session.get('user_id') %}<header><a class="brand" href="{{url_for('dashboard')}}">RTF Accounts</a><nav>
+<a href="{{url_for('dashboard')}}">Dashboard</a><a href="{{url_for('parties',kind='client')}}">Clients</a><a href="{{url_for('parties',kind='vendor')}}">Vendors</a><a href="{{url_for('settings')}}">Settings</a><a href="{{url_for('logout')}}">Logout</a></nav></header>{% endif %}
+<main>{% with msgs=get_flashed_messages(with_categories=true) %}{% for category,msg in msgs %}<div class="flash {{category}}">{{msg}}</div>{% endfor %}{% endwith %}
+{% if standalone_message %}<p>{{standalone_message}}</p>{% else %}{% block content %}{% endblock %}{% endif %}</main></body></html>
